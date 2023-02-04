@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8fc84ee65e5708040bc98fc991411903
+guid: c7d51147defd836458cc0e4194b7ef8d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fluffy_20idle_0
+      name: Player_Run_1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 54
-        height: 74
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,83 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0131f339d6822d34c9a0578556196e83
-      internalID: -1646894812
+      spriteID: 6a86c8866a1ff3647b84aa727d7a5a7c
+      internalID: 1474601796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fluffy_20idle_1
+      name: Player_Run_1_1
       rect:
         serializedVersion: 2
-        x: 54
-        y: 1
-        width: 54
-        height: 73
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: efa94f677cf067d47beb72e6ee93e9a5
-      internalID: -1400268228
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fluffy_20idle_2
-      rect:
-        serializedVersion: 2
-        x: 108
-        y: 2
-        width: 55
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77535a0d7abd2184db6412438e2192c7
-      internalID: -589585691
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fluffy_20idle_3
-      rect:
-        serializedVersion: 2
-        x: 163
-        y: 1
-        width: 55
-        height: 73
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e5124d47ede32a4499fac3c9dd875e04
-      internalID: 1507459952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fluffy_20idle_4
-      rect:
-        serializedVersion: 2
-        x: 218
+        x: 32
         y: 0
-        width: 55
-        height: 74
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da37e3a96c75ee141bb56f54ce790851
-      internalID: -281783002
+      spriteID: ea67c966db63d4e4583b438e9a9bbf8a
+      internalID: -626985781
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fluffy_20idle_5
+      name: Player_Run_1_2
       rect:
         serializedVersion: 2
-        x: 273
+        x: 64
         y: 0
-        width: 52
-        height: 74
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,29 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccce854590ce52b409a0b7b2d3d99c29
-      internalID: 1629901040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fluffy_20idle_6
-      rect:
-        serializedVersion: 2
-        x: 325
-        y: 0
-        width: 52
-        height: 74
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e625a1517d2a3c4eb5e06818c5fb200
-      internalID: 254393179
+      spriteID: 9d26fa94afeb67a41afefb4606d3c1c6
+      internalID: -283957430
       vertices: []
       indices: 
       edges: []
@@ -274,13 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      fluffy_20idle_0: -1646894812
-      fluffy_20idle_3: 1507459952
-      fluffy_20idle_1: -1400268228
-      fluffy_20idle_5: 1629901040
-      fluffy_20idle_2: -589585691
-      fluffy_20idle_4: -281783002
-      fluffy_20idle_6: 254393179
+      Player_Run_1_1: -626985781
+      Player_Run_1_2: -283957430
+      Player_Run_1_0: 1474601796
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

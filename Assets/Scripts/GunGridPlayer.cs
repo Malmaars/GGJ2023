@@ -28,6 +28,7 @@ public class GunGridPlayer : MonoBehaviour
                     Tileable grabbed = col.gameObject.GetComponent<Tileable>();
                     grabbed.OnGrab();
                     currentlyHeld = grabbed;
+                    break;
                 }
             }
         }
@@ -45,7 +46,7 @@ public class GunGridPlayer : MonoBehaviour
         if(currentlyHeld != null)
         {
             //move the currentlyheld
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0,0,9);
             currentlyHeld.body.transform.position = mousePos;
         }
     }

@@ -8,6 +8,9 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public int baseHealth;
     public int health;
+
+    public float moveSpeed;
+    public int damage;
     public bool active { get; set; }
 
     public bool alive;
@@ -31,13 +34,19 @@ public class Enemy : MonoBehaviour, IPoolable
     // Update is called once per frame
     void Update()
     {
-        if(health <= 0)
+        //make it walk and attack the player
+
+    }
+
+    public void CheckDeath()
+    {
+        if (health <= 0)
         {
             Die();
         }
     }
 
-    public void ChangeHealth(int _change)
+    public virtual void ChangeHealth(int _change)
     {
         health -= _change;
     }
