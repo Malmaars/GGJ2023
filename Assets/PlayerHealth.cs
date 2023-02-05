@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
     public SpriteRenderer[] Healths;
 
     public int healthAmount;
+    public AudioSource source;
+    public AudioClip onHit;
 
     private void Awake()
     {
@@ -40,5 +42,7 @@ public class PlayerHealth : MonoBehaviour
                 Healths[i].sprite = fullHeart;
             }
         }
+
+        source.PlayOneShot(onHit);
     }
 }

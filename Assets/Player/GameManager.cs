@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Transform playerObject;
     public GameObject cursor, reticle;
     //one of the two is active. Never both
     public Player topDownPlayer;
@@ -22,6 +23,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject GameOverMenu;
 
+    public Environmental[] environmentals;
+
+    public AudioSource source;
+    public AudioClip openMenu;
     private void Awake()
     {
         //stateMachine = new GameStateMachine()
@@ -33,11 +38,20 @@ public class GameManager : MonoBehaviour
         GunManager.fileMenu = fileMenu;
         GunManager.brokeFileMenu = brokeFileMenu;
 
+        DistributePlayerRef();
+
         Cursor.visible = false;
+        cursor.SetActive(false);
+        reticle.SetActive(true);
+    }
+
+    void DistributePlayerRef()
+    {
     }
 
     private void Update()
     {
+        EnemyHandler.FixedUpdate();
         if (Input.GetKeyDown(KeyCode.E))
         {
             SwitchPlayerState();
@@ -50,6 +64,8 @@ public class GameManager : MonoBehaviour
 
         if(topDownPlayer.playerHealth.healthAmount <= 0)
         {
+            cursor.SetActive(true);
+            reticle.SetActive(false);
             GameOverMenu.SetActive(true);
         }
     }
@@ -60,6 +76,7 @@ public class GameManager : MonoBehaviour
 
         if (topDownPlayer.enabled)
         {
+            source.PlayOneShot(openMenu);
             //switch to gridplayer
             gridPlayer.SetActive(true);
             topDownPlayer.enabled = false;

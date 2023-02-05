@@ -15,7 +15,8 @@ public enum ShootableType
     grenade,
     laser,
     fire,
-    ice
+    ice,
+    rocket
 }
 
 public class Tileable : MonoBehaviour
@@ -86,6 +87,14 @@ public class Tileable : MonoBehaviour
 
             case ShootableType.grenade:
                 thisShootable = new GrenadeShootable();
+                break;
+
+            case ShootableType.rocket:
+                thisShootable = new RocketShootable();
+                break;
+
+            case ShootableType.ice:
+                thisShootable = new IceShootable();
                 break;
         }
 

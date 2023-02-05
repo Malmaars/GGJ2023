@@ -18,6 +18,8 @@ public class Grenade : MonoBehaviour
 
     public int damage;
     public bool hit;
+
+    public AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,7 @@ public class Grenade : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, transform.rotation.eulerAngles.z + Time.deltaTime * rotSpeed));
 
-        transform.position = new Vector2(transform.position.x, transform.position.y) + direction.normalized * speed * Time.deltaTime;
+        //transform.position = new Vector2(transform.position.x, transform.position.y) + direction.normalized * speed * Time.deltaTime;
 
         if (speed >= 0)
         {
@@ -47,6 +49,7 @@ public class Grenade : MonoBehaviour
         if(explosionTimer > 0 && explosionTimer < 1f)
         {
             anim.SetBool("exploding", true);
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
 
         if(explosionTimer <= 0)
@@ -97,6 +100,7 @@ public class Grenade : MonoBehaviour
     public void SetDirection(Vector2 _newDir)
     {
         direction = _newDir;
+        GetComponent<Rigidbody2D>().AddForce(direction * speed  , ForceMode2D.Impulse);
         explosionTimer = timeTillExplosion;
     }
 
@@ -109,6 +113,11 @@ public class Grenade : MonoBehaviour
     public void GotHit()
     {
         hit = true;
+    }
+
+    public void ExplosionSound()
+    {
+        //source.PlayOneShot(Resources.Load("ExplosionSound") as AudioClip);
     }
 
     public void Die()

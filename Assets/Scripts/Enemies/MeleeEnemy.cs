@@ -17,6 +17,7 @@ public class MeleeEnemy : Enemy
     float stunTimer;
 
     NavMeshAgent agent;
+    public AudioClip slash;
     // Start is called before the first frame update
     void Awake()
     {
@@ -95,14 +96,24 @@ public class MeleeEnemy : Enemy
 
     void newDestination()
     {
-        Vector2 newDes = playerReference.transform.position;
-        destination = newDes;
+        if (Vector2.Distance(playerReference.transform.position, transform.position) < 6)
+        {
+            Vector2 newDes = playerReference.transform.position;
+            destination = newDes;
+        }
+
+        else
+        {
+            Vector2 newDes = new Vector2(Random.Range(1f,4f), Random.Range(1f, 4f));
+            destination = new Vector2(transform.position.x, transform.position.y) + newDes;
+        }
         agent.SetDestination(destination);
     }
 
     void AttackPlayer()
     {
         playerReference.TakeDamage(damage);
+        source.PlayOneShot(slash);
     }
 
     public override void ChangeHealth(int _change)

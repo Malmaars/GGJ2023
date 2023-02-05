@@ -20,6 +20,8 @@ public class BulletEnemy : Enemy
     public float hitStun;
     float stunTimer;
 
+
+    public AudioClip ShotSound;
     public float deathTimer;
 
 
@@ -31,6 +33,8 @@ public class BulletEnemy : Enemy
 
     public Transform myGun;
     NavMeshAgent agent;
+
+    public SpriteRenderer rend;
     // Start is called before the first frame update
     void Awake()
     {
@@ -102,6 +106,11 @@ public class BulletEnemy : Enemy
     public void AttackPlayer()
     {
         //shoot at the player
+        if (rend.isVisible)
+        {
+            source.PlayOneShot(ShotSound);
+        }
+
         Shoot();
     }
 
@@ -134,6 +143,7 @@ public class BulletEnemy : Enemy
                 EnemyBullet toShoot = EnemyHandler.RequestBullet();
                 toShoot.MakeBullet(barrel.position, (playerRef.transform.position - transform.position).normalized);
 
+                Debug.Log(rend.isVisible);
                 //evil bullet
                 break;
         }

@@ -7,6 +7,8 @@ public class ActualPickUp : MonoBehaviour
     public GameObject tileToAcquire;
 
     public Animator TileToExplode;
+
+    public AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,8 @@ public class ActualPickUp : MonoBehaviour
 
             //trigger animation
             TileToExplode.SetTrigger("Die");
+
+            source.PlayOneShot(Resources.Load("PickupSound") as AudioClip);
         }
     }
 

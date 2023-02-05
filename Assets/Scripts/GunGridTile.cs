@@ -9,12 +9,16 @@ public class GunGridTile : MonoBehaviour
     public Tileable TileableOnThisTile;
     GunGridManager gridManager;
 
+    public AudioSource source;
+    public AudioClip inSlot;
     public bool overlapped;
 
     // Start is called before the first frame update
     void Start()
     {
         gridManager = FindObjectOfType<GunGridManager>();
+
+        inSlot = Resources.Load("ClickIn") as AudioClip;
     }
 
     // Update is called once per frame
@@ -50,6 +54,8 @@ public class GunGridTile : MonoBehaviour
     public void SnapTo(Transform _toSnap)
     {
         _toSnap.position = transform.position;
+
+        source.PlayOneShot(inSlot);
 
         //check if it overlaps others as well
         if (TileableOnThisTile.tileType == TileableType.decoration)

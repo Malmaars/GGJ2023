@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public bool alive;
 
+    public AudioSource source;
+
     public void OnEnableObject()
     {
         alive = true;
@@ -44,6 +46,11 @@ public class Enemy : MonoBehaviour, IPoolable
         {
             Die();
         }
+    }
+
+    public void ExplosionSound()
+    {
+        source.PlayOneShot(Resources.Load("ExplosionSound") as AudioClip);
     }
 
     public virtual void ChangeHealth(int _change)

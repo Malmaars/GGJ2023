@@ -31,11 +31,17 @@ public class Player : MonoBehaviour
     ObjectPool<GrenadeShootable> grenadetPool;
     List<GrenadeShootable> activeGrenades;
 
+    ObjectPool<RocketShootable> rocketPool;
+    List<RocketShootable> activeRockets;
+
     public PlayerHealth playerHealth;
 
     public float gunDistanceFromPlayer;
 
     PlayerInputActions controls;
+
+    public AudioSource source;
+    public AudioClip gunShot;
 
     bool immune;
     // Start is called before the first frame update
@@ -59,6 +65,9 @@ public class Player : MonoBehaviour
 
         grenadetPool = new ObjectPool<GrenadeShootable>();
         activeGrenades = new List<GrenadeShootable>();
+
+        rocketPool = new ObjectPool<RocketShootable>();
+        activeRockets = new List<RocketShootable>();
 
         moveSpeed = baseSpeed;
     }
@@ -104,6 +113,17 @@ public class Player : MonoBehaviour
             {
                 grenadetPool.ReturnObjectToPool(activeGrenades[i]);
                 activeGrenades.Remove(activeGrenades[i]);
+                i--;
+            }
+        }
+
+        for (int i = 0; i < activeRockets.Count; i++)
+        {
+            activeRockets[i].LogicUpdate();
+            if (activeRockets[i].hit)
+            {
+                rocketPool.ReturnObjectToPool(activeRockets[i]);
+                activeRockets.Remove(activeRockets[i]);
                 i--;
             }
         }
@@ -175,6 +195,7 @@ public class Player : MonoBehaviour
 
             StartCoroutine(shootBurst());
             shotTimer = timeBetweenShots;
+            source.PlayOneShot(gunShot);
         }
     }
 
@@ -200,6 +221,17 @@ public class Player : MonoBehaviour
             newGrenade.SetStats(_toShoot.damage, _toShoot.speed);
             newGrenade.MakeBullet(barrel.transform.position, directionToMouse);
             activeGrenades.Add(newGrenade);
+        }
+
+        if (_toShoot.GetType() == typeof(RocketShootable))
+        {
+            RocketShootable newRocket = rocketPool.RequestItem();
+            Vector2 transformPosition2D = new Vector2(transform.position.x, transform.position.y);
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 directionToMouse = mousePosition - transformPosition2D;
+            newRocket.SetStats(_toShoot.damage, _toShoot.speed);
+            newRocket.MakeBullet(barrel.transform.position, directionToMouse);
+            activeRockets.Add(newRocket);
         }
     }
 

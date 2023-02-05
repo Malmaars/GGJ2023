@@ -15,9 +15,9 @@ public static class EnemyHandler
 
     public static void FixedUpdate()
     {
-        foreach(EnemyBullet bullet in activeEnemyBullets)
-        {
-            bullet.LogicUpdate();
+        for(int i = 0; i < activeEnemyBullets.Count; i++) { 
+        
+            activeEnemyBullets[i].LogicUpdate();
         }
     }
 

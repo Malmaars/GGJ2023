@@ -8,6 +8,7 @@ TagManager:
   - Tileable
   - PlayerBullet
   - EnemyBullet
+  - Floor
   layers:
   - Default
   - TransparentFX

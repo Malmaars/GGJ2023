@@ -15,4 +15,9 @@ public class FaceCamera : MonoBehaviour
     {
         transform.forward = new Vector3(0, 0, -1);
     }
+
+    public void Die()
+    {
+        GetComponentInParent<Enemy>().Die();
+    }
 }
