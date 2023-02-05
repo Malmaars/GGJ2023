@@ -54,8 +54,7 @@ public class Tileable : MonoBehaviour
         SetShootable();
 
         thisShootable.SetStats(damage, speed);
-
-        
+        HideAllSmallIcons();        
     }
 
     private void OnEnable()
