@@ -34,7 +34,17 @@ public class EnemyBullet : Shootable
     {
         base.OnEnableObject();
         if (childBullet != null)
+        {
             childBullet.hit = false;
+
+            childBullet.gameObject.SetActive(true);
+        }
+    }
+
+    public override void OnDisableObject()
+    {
+        base.OnDisableObject();
+        childBullet.gameObject.SetActive(false);
     }
 
 

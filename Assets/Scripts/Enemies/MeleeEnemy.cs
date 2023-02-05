@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class MeleeEnemy : Enemy
 {
     public Animator animator;
@@ -15,9 +15,12 @@ public class MeleeEnemy : Enemy
 
     public float hitStun;
     float stunTimer;
+
+    NavMeshAgent agent;
     // Start is called before the first frame update
     void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
         alive = true;
         playerReference = FindObjectOfType<Player>();
 
@@ -54,8 +57,8 @@ public class MeleeEnemy : Enemy
             if (Vector2.Distance(transform.position, destination) >= 1f)
                 animator.SetBool("Walking", true);
 
-            Vector2 directionToDestination = (destination - transform.position).normalized;
-            transform.position += new Vector3(directionToDestination.x, directionToDestination.y, 0) * Time.deltaTime * moveSpeed;
+            //Vector2 directionToDestination = (destination - transform.position).normalized;
+            //transform.position += new Vector3(directionToDestination.x, directionToDestination.y, 0) * Time.deltaTime * moveSpeed;
         }
 
         //if player is close, attack
@@ -94,6 +97,7 @@ public class MeleeEnemy : Enemy
     {
         Vector2 newDes = playerReference.transform.position;
         destination = newDes;
+        agent.SetDestination(destination);
     }
 
     void AttackPlayer()
