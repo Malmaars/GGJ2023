@@ -62,6 +62,11 @@ public class Grenade : MonoBehaviour
                 {
                     col.gameObject.GetComponent<Enemy>().ChangeHealth(damage);
                 }
+
+                if(col.gameObject.tag == "Player")
+                {
+                    col.gameObject.GetComponent<Player>().TakeDamage(1);
+                }
             }
         }
     }
@@ -104,5 +109,10 @@ public class Grenade : MonoBehaviour
     public void GotHit()
     {
         hit = true;
+    }
+
+    public void Die()
+    {
+        Destroy(this.gameObject);
     }
 }

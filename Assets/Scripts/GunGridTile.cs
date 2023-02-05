@@ -52,14 +52,14 @@ public class GunGridTile : MonoBehaviour
         _toSnap.position = transform.position;
 
         //check if it overlaps others as well
+        if (TileableOnThisTile.tileType == TileableType.decoration)
+            TileableOnThisTile.checkSmallIcons();
     }
 
     public void GetTileableInfo(Tileable _tile)
     {
         TileableOnThisTile = _tile;
 
-        if (TileableOnThisTile.tileType == TileableType.decoration)
-            TileableOnThisTile.checkSmallIcons();
     }
 
     public bool CheckForOverlap()

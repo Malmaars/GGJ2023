@@ -9,11 +9,6 @@ public class Bullet : MonoBehaviour
 
     public int damage;
     public bool hit;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -21,19 +16,31 @@ public class Bullet : MonoBehaviour
         transform.right = (new Vector2(transform.position.x, transform.position.y) + direction.normalized * speed * Time.deltaTime) - new Vector2(transform.position.x, transform.position.y);
 
         transform.position = new Vector2(transform.position.x, transform.position.y) + direction.normalized * speed * Time.deltaTime;
-        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "PlayerBullet")
+        if (collision.gameObject.tag == "PlayerBullet" || collision.gameObject.tag == "EnemyBullet")
         {
             return;
         }
 
-        if (collision.gameObject.tag == "Enemy")
+        if (this.gameObject.tag == "PlayerBullet")
         {
-            //attack that shit
-            collision.gameObject.GetComponent<Enemy>().ChangeHealth(damage);
+
+            if (collision.gameObject.tag == "Enemy")
+            {
+                //attack that shit
+                collision.gameObject.GetComponent<Enemy>().ChangeHealth(damage);
+            }
+        }
+
+        if (this.gameObject.tag == "EnemyBullet")
+        {
+            if (collision.gameObject.tag == "Player")
+            {
+                //attack that shit
+                collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+            }
         }
 
         hit = true;

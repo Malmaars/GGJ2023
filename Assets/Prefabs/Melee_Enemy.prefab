@@ -122,7 +122,7 @@ MonoBehaviour:
   body: {fileID: 3333924507063653705}
   baseHealth: 4
   health: 0
-  moveSpeed: 8
+  moveSpeed: 6
   damage: 1
   alive: 0
   animator: {fileID: 3333924507063653704}

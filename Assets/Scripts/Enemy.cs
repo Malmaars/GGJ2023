@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour, IPoolable
 
     }
 
-    public void CheckDeath()
+    public virtual void CheckDeath()
     {
         if (health <= 0)
         {
@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour, IPoolable
         health -= _change;
     }
 
-    void Die()
+    public virtual void Die()
     {
         alive = false;
     }

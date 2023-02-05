@@ -14,17 +14,34 @@ public class GameManager : MonoBehaviour
     GameStateMachine stateMachine;
     public GunGridManager gridManager;
 
+    public GameObject collecitbleTileParent;
+
+    public Transform[] tileSpawnLocations;
+    public GameObject fileMenu;
+    public Sprite brokeFileMenu;
+
     private void Awake()
     {
         //stateMachine = new GameStateMachine()
         GunManager.Initialize();
+        EnemyHandler.Initialize();
+        GunManager.Initialize();
+        GunManager.tileParent = collecitbleTileParent;
+        GunManager.spawnLocations = tileSpawnLocations;
+        GunManager.fileMenu = fileMenu;
+        GunManager.brokeFileMenu = brokeFileMenu;
 
         Cursor.visible = false;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SwitchPlayerState();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && gridPlayer.activeSelf)
         {
             SwitchPlayerState();
         }

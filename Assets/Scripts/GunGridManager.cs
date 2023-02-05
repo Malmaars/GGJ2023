@@ -102,7 +102,6 @@ public class GunGridManager : MonoBehaviour
             }
         }
 
-        Debug.Log(toReturn.Count);
         GunManager.UpdateBulletToShoot(toReturn.ToArray());
     }
 }

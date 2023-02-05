@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public GameObject EnemyPrefab;
+    public GameObject[] EnemyPrefab;
     List<GameObject> enemyPool;
 
     List<GameObject> activeEnemies;
@@ -48,7 +48,7 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
-            temp = Instantiate(EnemyPrefab);
+            temp = Instantiate(EnemyPrefab[Random.Range(0,EnemyPrefab.Length)]);
             temp.SetActive(true);
             temp.GetComponent<Enemy>().OnEnableObject();
         }

@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     public float timeBetweenShots;
     float shotTimer;
 
+    public float stunDuration;
+    float stunTimer;
+
     public int health;
 
     public Animator playerAnimator;
@@ -28,6 +31,7 @@ public class Player : MonoBehaviour
     ObjectPool<GrenadeShootable> grenadetPool;
     List<GrenadeShootable> activeGrenades;
 
+    public PlayerHealth playerHealth;
 
     public float gunDistanceFromPlayer;
 
@@ -76,6 +80,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        stunTimer -= Time.deltaTime;
         shotTimer-= Time.deltaTime;
         //we're moving the gameobject this script is on.
         Move();
@@ -113,10 +118,19 @@ public class Player : MonoBehaviour
             playerAnimator.SetTrigger("Roll");
             StartCoroutine(DodgeRoll());
         }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            TakeDamage(1);
+        }
     }
 
     void Move()
     {
+        if(stunTimer > 0)
+        {
+            return;
+        }
         Vector2 inputDirection = InputDistributor.inputActions.Player.Move.ReadValue<Vector2>();
 
         if (inputDirection.x == 0 && inputDirection.y == 0)
@@ -156,7 +170,7 @@ public class Player : MonoBehaviour
 
     public void Shoot()
     {
-        if (shotTimer < 0 && !immune && GunManager.bulletsToShoot.Length > 0)
+        if (shotTimer < 0 && !immune && GunManager.bulletsToShoot.Length > 0 && stunTimer < 0)
         {
 
             StartCoroutine(shootBurst());
@@ -196,7 +210,10 @@ public class Player : MonoBehaviour
             return;
         }
 
+        stunTimer = stunDuration;
         health -= _damageAmount;
+        playerHealth.RemoveOrAddHealth(-_damageAmount);
+
         playerAnimator.SetTrigger("Hit");
     }
 

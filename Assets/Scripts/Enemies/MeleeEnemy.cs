@@ -6,18 +6,27 @@ public class MeleeEnemy : Enemy
 {
     public Animator animator;
     Vector3 destination;
-    GameObject playerReference;
+    Player playerReference;
 
     public float attackPause;
     float pauseTimer;
+
+    public float deathTimer;
 
     public float hitStun;
     float stunTimer;
     // Start is called before the first frame update
     void Awake()
     {
-        playerReference = FindObjectOfType<Player>().gameObject;
+        alive = true;
+        playerReference = FindObjectOfType<Player>();
 
+        StartCoroutine(FollowPlayer());
+    }
+
+    private void OnEnable()
+    {
+        alive = true;
         StartCoroutine(FollowPlayer());
     }
 
@@ -29,7 +38,7 @@ public class MeleeEnemy : Enemy
 
         if(playerReference == null)
         {
-            playerReference = FindObjectOfType<Player>().gameObject;
+            playerReference = FindObjectOfType<Player>();
             return;
         }
 
@@ -40,9 +49,11 @@ public class MeleeEnemy : Enemy
             animator.SetBool("Walking", false);
         }
 
-        else if (pauseTimer <= 0 && stunTimer <= 0)
+        if (pauseTimer <= 0 && stunTimer <= 0)
         {
-            animator.SetBool("Walking", true);
+            if (Vector2.Distance(transform.position, destination) >= 1f)
+                animator.SetBool("Walking", true);
+
             Vector2 directionToDestination = (destination - transform.position).normalized;
             transform.position += new Vector3(directionToDestination.x, directionToDestination.y, 0) * Time.deltaTime * moveSpeed;
         }
@@ -51,10 +62,32 @@ public class MeleeEnemy : Enemy
         if(Vector2.Distance(playerReference.transform.position, transform.position) < 1f && pauseTimer <= 0 && stunTimer <= 0)
         {
             animator.SetTrigger("Attack");
+            AttackPlayer();
             pauseTimer = attackPause;
         }
 
         CheckDeath();
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        this.gameObject.SetActive(false);
+    }
+
+    public override void CheckDeath()
+    {
+        if (health <= 0)
+        {
+            alive = false;
+            animator.SetTrigger("Die");
+            deathTimer -= Time.deltaTime;
+
+            if (deathTimer <= 0)
+            {
+                animator.SetTrigger("Explode");
+            }
+        }
     }
 
     void newDestination()
@@ -65,7 +98,7 @@ public class MeleeEnemy : Enemy
 
     void AttackPlayer()
     {
-
+        playerReference.TakeDamage(damage);
     }
 
     public override void ChangeHealth(int _change)
