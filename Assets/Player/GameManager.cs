@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public GameObject fileMenu;
     public Sprite brokeFileMenu;
 
+    public GameObject GameOverMenu;
+
     private void Awake()
     {
         //stateMachine = new GameStateMachine()
@@ -44,6 +46,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && gridPlayer.activeSelf)
         {
             SwitchPlayerState();
+        }
+
+        if(topDownPlayer.playerHealth.healthAmount <= 0)
+        {
+            GameOverMenu.SetActive(true);
         }
     }
 

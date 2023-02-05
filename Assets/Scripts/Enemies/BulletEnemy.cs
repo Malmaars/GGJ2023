@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BulletEnemy : Enemy
 {
@@ -29,13 +30,16 @@ public class BulletEnemy : Enemy
     Player playerRef;
 
     public Transform myGun;
+    NavMeshAgent agent;
     // Start is called before the first frame update
     void Awake()
     {
         playerRef = FindObjectOfType<Player>();
+        agent = GetComponent<NavMeshAgent>();
 
         alive = true;
         StartCoroutine(FollowTarget());
+
     }
 
     private void OnEnable()
@@ -48,6 +52,7 @@ public class BulletEnemy : Enemy
     {
         Vector2 newDes = new Vector2(Random.Range(min.x, max.x), Random.Range(min.y, max.y));
         destination = newDes;
+        agent.SetDestination(destination);
     }
 
     // Update is called once per frame
@@ -79,8 +84,8 @@ public class BulletEnemy : Enemy
             if (Vector2.Distance(transform.position, destination) >= 1f)
                 animator.SetBool("Walking", true);
 
-            Vector2 directionToDestination = (destination - transform.position).normalized;
-            transform.position += new Vector3(directionToDestination.x, directionToDestination.y, 0) * Time.deltaTime * moveSpeed;
+            //Vector2 directionToDestination = (destination - transform.position).normalized;
+            //transform.position += new Vector3(directionToDestination.x, directionToDestination.y, 0) * Time.deltaTime * moveSpeed;
         }
 
         if (pauseTimer < 0) {
