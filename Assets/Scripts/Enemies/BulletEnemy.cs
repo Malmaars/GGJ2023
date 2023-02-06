@@ -109,9 +109,10 @@ public class BulletEnemy : Enemy
         if (rend.isVisible)
         {
             source.PlayOneShot(ShotSound);
-        }
 
-        Shoot();
+
+            Shoot();
+        }
     }
 
     public override void CheckDeath()

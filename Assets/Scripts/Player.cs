@@ -89,6 +89,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(playerHealth.healthAmount <= 0)
+        {
+            return;
+        }
         stunTimer -= Time.deltaTime;
         shotTimer-= Time.deltaTime;
         //we're moving the gameobject this script is on.
@@ -264,11 +268,11 @@ public class Player : MonoBehaviour
     IEnumerator DodgeRoll()
     {
         moveSpeed += 2;
-        playerCol.enabled = false;
+        //playerCol.enabled = false;
         immune = true;
         yield return new WaitForSeconds(0.8f);
         immune = false;
-        playerCol.enabled = true;
+        //playerCol.enabled = true;
         moveSpeed = baseSpeed;
     }
 }

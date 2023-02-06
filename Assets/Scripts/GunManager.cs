@@ -36,13 +36,13 @@ public static class GunManager
     {
         ownedTiles.Add(_toAdd);
         GameObject temp = Object.Instantiate(_toAdd, tileParent.transform);
-        temp.transform.position = spawnLocations[spawnIndex].position;
+        temp.transform.position = spawnLocations[0].position;
         spawnIndex++;
 
-        if(spawnIndex > 2)
-        {
-            Debug.Log("CHANGE APPEARNACe");
-            fileMenu.GetComponent<SpriteRenderer>().sprite = brokeFileMenu;
-        }
+        //if(spawnIndex > 2)
+        //{
+        //    Debug.Log("CHANGE APPEARNACe");
+        //    fileMenu.GetComponent<SpriteRenderer>().sprite = brokeFileMenu;
+        //}
     }
 }

@@ -96,7 +96,7 @@ public class MeleeEnemy : Enemy
 
     void newDestination()
     {
-        if (Vector2.Distance(playerReference.transform.position, transform.position) < 6)
+        if (Vector2.Distance(playerReference.transform.position, transform.position) < 10)
         {
             Vector2 newDes = playerReference.transform.position;
             destination = newDes;
@@ -104,7 +104,7 @@ public class MeleeEnemy : Enemy
 
         else
         {
-            Vector2 newDes = new Vector2(Random.Range(1f,4f), Random.Range(1f, 4f));
+            Vector2 newDes = new Vector2(Random.Range(-4f,4f), Random.Range(-4f, 4f));
             destination = new Vector2(transform.position.x, transform.position.y) + newDes;
         }
         agent.SetDestination(destination);
