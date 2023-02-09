@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMover : MonoBehaviour
 {
     public Transform[] Locations;
-    int locationIndex;
+    int locationIndex = 1;
 
 
     Vector3 destination;
@@ -17,8 +17,15 @@ public class CameraMover : MonoBehaviour
     }
     public void MoveToTheNext()
     {
+        Debug.Log(destination);
         destination = Locations[locationIndex].position;
         locationIndex++;
+    }
+
+    public void MoveToThePrevious()
+    {
+        locationIndex--;
+        destination = Locations[locationIndex - 1].position;
     }
 
     private void Update()

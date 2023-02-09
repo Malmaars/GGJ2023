@@ -5,6 +5,9 @@ using UnityEngine;
 public class CamerTrigger : MonoBehaviour
 {
     public CameraMover mover;
+
+    bool up;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +24,15 @@ public class CamerTrigger : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            mover.MoveToTheNext();
-            Destroy(this.gameObject);
+            if (!up)
+                mover.MoveToTheNext();
+
+            if (up)
+            {
+                Debug.Log("Move down");
+                mover.MoveToThePrevious();
+            }
+            up = !up;
         }
     }
 }

@@ -11,6 +11,7 @@ public class StartScreen : MonoBehaviour
     void Start()
     {
         source.PlayOneShot(startSound);
+        GunManager.UpdateBulletToShoot(new Shootable[0]);
     }
 
     // Update is called once per frame

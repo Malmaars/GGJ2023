@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuitGame : MonoBehaviour
 {
     private void OnMouseDown()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 }
